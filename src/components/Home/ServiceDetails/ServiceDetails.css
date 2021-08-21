@@ -1,0 +1,50 @@
+.card-img{
+    height: 180px;
+}
+.service-card{
+    height: 400px !important;
+}
+.viewBtn{
+    width: 80px;
+    height: 30px;
+    border: none;
+    /* border: 1px solid rgb(209, 90, 90)!important; */
+    border-radius: 5px;
+    background-color: rgb(209, 90, 90);
+    color: whitesmoke;
+    font-weight: bold;
+    transition: all 0.5s ease;
+}
+.viewBtn:hover{
+    background-color: #297F87!important;
+    color: whitesmoke;
+}
+.buynowBtn{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #297F87;
+    color: whitesmoke;
+    border: none;
+    
+}
+.img-area{
+    position: relative;
+}
+.pricing-area{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70px;
+    height: 40px;
+    /* margin-top: 56%; */
+    background-color: rgb(209, 90, 90);
+    color: whitesmoke;
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: bold;
+}
+.modal-img{
+    width: 100%;
+    height: 300px;
+}

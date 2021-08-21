@@ -1,0 +1,23 @@
+.dashboard-area{
+    background-color: #C3CAD1;
+    width: 100%;
+    min-height: 700px;
+}
+.dashboard-card{
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 5px gray;
+}
+.deleteBtn{
+    width: 60px;
+    height: 35px;
+    background-color: rgb(209, 90, 90);
+    color: whitesmoke;
+    border-radius: 5px;
+    border: none;
+    transition: all 1s ease;
+}
+.deleteBtn:hover{
+    background-color: #297F87;
+    color: whitesmoke;
+}

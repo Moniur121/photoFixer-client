@@ -1,0 +1,14 @@
+.logIn-area{
+    background-color: #506981;
+    width: 100%;
+    min-height: 620px;
+}
+.signUp-form{
+    width: 400px;
+    min-height: 400px;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding-top: 10%;
+    background-color: whitesmoke;
+}

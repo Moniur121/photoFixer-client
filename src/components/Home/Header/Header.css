@@ -1,0 +1,17 @@
+.main-header{
+    background-color: #ebe8e1b6;
+    width:100%;
+}
+.authentication-btn{
+    width: 100px;
+    height: 40px;
+    background-color: #297F87;
+    color: whitesmoke;
+    border: none;
+    border-radius: 60px;
+    transition: all 1s ease;
+}
+.authentication-btn:hover{
+    background-color: rgb(209, 90, 90);
+    color: whitesmoke;
+}
