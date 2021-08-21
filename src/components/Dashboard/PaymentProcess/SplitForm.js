@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import {
   useStripe,
   useElements,
@@ -7,6 +7,8 @@ import {
   CardExpiryElement,
 } from "@stripe/react-stripe-js";
 import { useForm } from "react-hook-form";
+import { UserContext } from "../../../App";
+import { useHistory, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 const useOptions = () => {
   const options = useMemo(
@@ -33,10 +35,14 @@ const useOptions = () => {
 };
 
 const SplitForm = ({ totalPrice, serviceData }) => {
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState([]);
   const [inputVal, setInputVal] = useState("");
   const [payDisable, setPayDisable] = useState(false);
+  const history = useHistory();
+  const location = useLocation();
+  const { from } = location.state || { from: { pathname: "/paymentSuccess" } };
   const {
     register,
     handleSubmit,
@@ -54,37 +60,40 @@ const SplitForm = ({ totalPrice, serviceData }) => {
   const options = useOptions();
 
   const onSubmit = async (data, event) => {
-    event.preventDefault();
-      closeModal()
-    const paymentOrder = {
-      userName: data.userName,
-      email: data.email,
-      phone: data.phone,
-      totalPrice,
-      status: "Pending",
-    };
-    fetch("https://fast-reef-04000.herokuapp.com/paymentOrder", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(paymentOrder),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        alert("Payment Successfully")
-      });
+     
+      event.preventDefault();
+      closeModal();
+      const paymentOrder = {
+        userName: data.userName,
+        email: data.email,
+        phone: data.phone,
+        totalPrice,
+        status: "Pending",
+      };
+      fetch("https://fast-reef-04000.herokuapp.com/paymentOrder", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(paymentOrder),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          alert("Payment Successfully");
+          history.replace(from);
+        });
       console.log(data);
 
-    if (!stripe || !elements) {
-      return;
-    }
-    let payload = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardNumberElement),
-    });
-    console.log("[PaymentMethod]", payload);
-    setErrorMessage(payload);
+      if (!stripe || !elements) {
+        return;
+      }
+      let payload = await stripe.createPaymentMethod({
+        type: "card",
+        card: elements.getElement(CardNumberElement),
+      });
+      console.log("[PaymentMethod]", payload);
+      setErrorMessage(payload);
+    
   };
   const paymentSuccess = (id) => {
     fetch(`https://fast-reef-04000.herokuapp.com/paymentSuccess/${id}`, {
@@ -202,7 +211,6 @@ const SplitForm = ({ totalPrice, serviceData }) => {
       <br />
       <button
         onClick={() => {
-          
           paymentSuccess();
         }}
         disabled={!payDisable}

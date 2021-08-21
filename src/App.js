@@ -14,6 +14,7 @@ import SignUp from "./components/LogIn/LogIn/SignUp";
 import SignIn from "./components/LogIn/LogIn/SignIn";
 import { createContext, useState } from "react";
 import PrivateRoute from "./components/LogIn/PrivateRoute/PrivateRoute";
+import PaymentSuccess from "./components/Dashboard/PaymentProcess/PaymentSuccess";
 export const UserContext = createContext()
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -23,6 +24,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route path="/paymentSuccess" component={PaymentSuccess}>
+        <PaymentSuccess />
         </Route>
         <Route path="/dashboard" component={Dashboard}>
           <Header navbar-bg={true} />

@@ -35,3 +35,15 @@
     height: 3px;
     background-color: #297F87;
 }
+.payment-successArea{
+    width: 100%;
+    min-height: 150;
+    text-align: center;
+    
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding-top: 10%;
+    background-color: #297F87;
+    color: whitesmoke;
+}
